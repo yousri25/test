@@ -1,472 +1,620 @@
 <!DOCTYPE html>
-<html lang="ar">
+<html lang="ar" dir="rtl">
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">   
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
     <meta charset="UTF-8">
     <title>مستوصف اجيم</title>
     <style>
+        :root {
+            --primary-color: #1976d2;
+            --secondary-color: #1565c0;
+            --text-color: #333;
+            --white: #fff;
+            --shadow: rgba(25, 118, 210, 0.07);
+        }
+        
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
         html {
             scroll-behavior: smooth;
+            font-size: 16px;
         }
+        
         body {
             margin: 0;
             font-family: 'Cairo', Arial, sans-serif;
+            line-height: 1.6;
+            overflow-x: hidden;
         }
+        
+        /* Header */
         header {
-            background: #fff;
-            color: #1976d2;
+            background: var(--white);
+            color: var(--primary-color);
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 16px 32px;
-            border: 2px solid #1976d2;
-            border-radius: 16px;
-            margin: 24px 32px 0 32px;
-            box-shadow: 0 2px 12px rgba(25, 118, 210, 0.05);
+            padding: 12px 16px;
+            border: 2px solid var(--primary-color);
+            border-radius: 12px;
+            margin: 16px 16px 0 16px;
+            box-shadow: 0 2px 8px var(--shadow);
             position: sticky;
             top: 0;
             z-index: 100;
         }
+        
         .logo {
-            font-size: 1.5em;
+            font-size: 1.2em;
             font-weight: bold;
-            letter-spacing: 1px;
-            color: #1976d2;
+            color: var(--primary-color);
         }
+        
         nav {
             display: flex;
-            gap: 24px;
+            gap: 12px;
+            flex-wrap: wrap;
+            justify-content: center;
         }
+        
         nav a {
-            color: #1976d2;
+            color: var(--primary-color);
             text-decoration: none;
-            font-size: 1em;
+            font-size: 0.9em;
             transition: color 0.3s, border-bottom 0.3s;
             border-bottom: 2px solid transparent;
             padding-bottom: 2px;
+            white-space: nowrap;
         }
+        
         nav a:hover {
-            color: #1565c0;
-            border-bottom: 2px solid #1976d2;
+            color: var(--secondary-color);
+            border-bottom: 2px solid var(--primary-color);
         }
+        
+        /* Home Section */
         .home-content {
             display: flex;
+            flex-direction: column;
             align-items: center;
             justify-content: center;
-            padding: 60px 32px 0 32px;
-            gap: 48px;
+            padding: 40px 16px 0 16px;
+            gap: 32px;
         }
+        
         .home-image {
-            max-width: 500px;
+            max-width: 100%;
             width: 100%;
             height: auto;
-            border-radius: 16px;
-            box-shadow: 0 4px 24px rgba(0,0,0,0.10);
+            border-radius: 12px;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.10);
         }
+        
         .home-text-group {
             display: flex;
             flex-direction: column;
-            gap: 24px;
-            max-width: 500px;
+            gap: 20px;
+            max-width: 100%;
+            text-align: center;
         }
+        
         .home-text {
-            font-size: 2.5em;
-            color: #1976d2;
+            font-size: 1.8em;
+            color: var(--primary-color);
             font-weight: 700;
+            line-height: 1.4;
         }
+        
         .read-more-btn {
             display: inline-block;
-            background: #1976d2;
-            color: #fff;
-            padding: 12px 32px;
+            background: var(--primary-color);
+            color: var(--white);
+            padding: 12px 24px;
             border: none;
             border-radius: 6px;
-            font-size: 1.1em;
+            font-size: 1em;
             font-weight: 500;
             text-decoration: none;
             cursor: pointer;
-            transition: 
-                background 0.3s,
-                color 0.3s,
-                transform 0.3s;
+            transition: all 0.3s;
             width: fit-content;
+            align-self: center;
         }
+        
         .read-more-btn:hover {
-            background: #fff;
-            color: #1976d2;
-            transform: scale(1.08);
-            border: 2px solid #1976d2;
+            background: var(--white);
+            color: var(--primary-color);
+            transform: scale(1.05);
+            border: 2px solid var(--primary-color);
         }
-        .facility-title {
+        
+        /* Section Titles */
+        .facility-title,
+        .doctors-title,
+        .analysis-title,
+        .location-title,
+        .contact-title {
             text-align: center;
-            font-size: 2em;
-            color: #1976d2;
+            font-size: 1.8em;
+            color: var(--primary-color);
             font-weight: 700;
-            margin: 120px 0 56px 0;
-            letter-spacing: 1px;
+            margin: 80px 0 40px 0;
         }
+        
+        /* About Section */
         .about-section {
             display: flex;
             flex-direction: column;
-            gap: 80px;
-            padding: 0 32px 100px 32px;
-        }
-        .about-part {
-            display: flex;
-            align-items: center;
             gap: 60px;
+            padding: 0 16px 60px 16px;
         }
-        .about-img {
-            width: 220px;
-            max-width: 100%;
-            border-radius: 12px;
-            box-shadow: 0 4px 16px rgba(0,0,0,0.08);
-            border: 2px solid #1976d2;
-            padding: 6px;
-            background: #fff;
-        }
-        .about-text {
-            font-size: 1.3em;
-            color: #333;
-            max-width: 500px;
-            border: 2px solid #1976d2;
-            border-radius: 12px;
-            padding: 28px 32px;
-            background: #fff;
-        }
-        .about-title {
-            font-size: 1.5em;
-            color: #1976d2;
-            font-weight: 700;
-            margin-bottom: 10px;
-        }
-        .about-part.reverse {
-            flex-direction: row-reverse;
-        }
-        /* Doctors Section */
-        .doctors-title {
-            text-align: center;
-            font-size: 2em;
-            color: #1976d2;
-            font-weight: 700;
-            margin: 120px 0 56px 0;
-            letter-spacing: 1px;
-        }
-        .doctors-section {
-            display: flex;
-            justify-content: center;
-            gap: 48px;
-            padding: 0 32px 100px 32px;
-        }
-        .doctor-card {
-            background: #fff;
-            border: 2px solid #1976d2;
-            border-radius: 18px;
-            box-shadow: 0 4px 16px rgba(25, 118, 210, 0.07);
+        
+        .about-part {
             display: flex;
             flex-direction: column;
             align-items: center;
-            padding: 32px 28px 28px 28px;
-            width: 270px;
+            gap: 30px;
         }
-        .doctor-card:nth-child(1) {
-            height: 420px;
-        }
-        .doctor-card:nth-child(2) {
-            height: 390px;
-        }
-        .doctor-card:nth-child(3) {
-            height: 440px;
-        }
-        .doctor-img {
-            width: 200px;
-            height: 200px;
-            object-fit: cover;
+        
+        .about-img {
+            width: 100%;
+            max-width: 280px;
             border-radius: 12px;
-            border: 2px solid #1976d2;
-            margin-bottom: 18px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            border: 2px solid var(--primary-color);
+            padding: 6px;
+            background: var(--white);
         }
-        .doctor-name {
+        
+        .about-text {
+            font-size: 1.1em;
+            color: var(--text-color);
+            max-width: 100%;
+            border: 2px solid var(--primary-color);
+            border-radius: 12px;
+            padding: 20px;
+            background: var(--white);
+            text-align: center;
+        }
+        
+        .about-title {
             font-size: 1.3em;
-            color: #1976d2;
+            color: var(--primary-color);
             font-weight: 700;
             margin-bottom: 10px;
         }
+        
+        /* Doctors Section */
+        .doctors-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 30px;
+            padding: 0 16px 60px 16px;
+        }
+        
+        .doctor-card {
+            background: var(--white);
+            border: 2px solid var(--primary-color);
+            border-radius: 16px;
+            box-shadow: 0 4px 12px var(--shadow);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 24px 20px;
+            width: 100%;
+            max-width: 320px;
+            height: auto !important;
+        }
+        
+        .doctor-img {
+            width: 160px;
+            height: 160px;
+            object-fit: cover;
+            border-radius: 12px;
+            border: 2px solid var(--primary-color);
+            margin-bottom: 16px;
+        }
+        
+        .doctor-name {
+            font-size: 1.2em;
+            color: var(--primary-color);
+            font-weight: 700;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+        
         .doctor-contacts {
             display: flex;
             flex-direction: column;
             align-items: center;
             gap: 8px;
-            font-size: 1em;
-            color: #333;
+            font-size: 0.95em;
+            color: var(--text-color);
+            text-align: center;
         }
+        
         .doctor-socials {
             display: flex;
             gap: 12px;
             margin-top: 6px;
         }
+        
         .doctor-socials a {
-            color: #1976d2;
+            color: var(--primary-color);
             font-size: 1.2em;
             text-decoration: none;
             transition: color 0.3s;
         }
+        
         .doctor-socials a:hover {
-            color: #1565c0;
+            color: var(--secondary-color);
         }
+        
         /* Analysis Section */
-        .analysis-title {
-            text-align: center;
-            font-size: 2em;
-            color: #1976d2;
-            font-weight: 700;
-            margin: 120px 0 40px 0;
-            letter-spacing: 1px;
-        }
         .analysis-section {
             display: flex;
             justify-content: center;
-            padding-bottom: 100px;
+            padding: 0 16px 60px 16px;
+            overflow-x: auto;
         }
+        
         .analysis-section table {
             border-collapse: collapse;
-            min-width: 700px;
-            font-size: 1.15em;
-            background: #fff;
-            border-radius: 18px;
+            width: 100%;
+            min-width: 500px;
+            font-size: 1em;
+            background: var(--white);
+            border-radius: 16px;
             overflow: hidden;
-            box-shadow: 0 4px 16px rgba(25,118,210,0.07);
+            box-shadow: 0 4px 12px var(--shadow);
         }
+        
         .analysis-section th, .analysis-section td {
-            text-align: left;
+            text-align: center;
+            padding: 14px 16px;
         }
+        
         .analysis-section th {
-            padding: 18px 32px;
-            background: #1976d2;
-            color: #fff;
-            border-right: 1px solid #fff;
+            background: var(--primary-color);
+            color: var(--white);
+            border-right: 1px solid var(--white);
+            font-weight: 600;
         }
+        
         .analysis-section th:last-child {
             border-right: none;
         }
+        
         .analysis-section td {
-            padding: 16px 32px;
             border-bottom: 1px solid #e3e3e3;
         }
+        
         .analysis-section tr:last-child td {
             border-bottom: none;
         }
+        
         .analysis-section td.available {
-            color: #1976d2;
+            color: var(--primary-color);
             font-weight: 600;
         }
+        
         .analysis-section td.not-available {
             color: #c62828;
             font-weight: 600;
         }
+        
         /* Location Section */
-        .location-title {
-            text-align: center;
-            font-size: 2em;
-            color: #1976d2;
-            font-weight: 700;
-            margin: 120px 0 56px 0;
-            letter-spacing: 1px;
-        }
         .location-section {
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
-            gap: 48px;
-            padding-bottom: 100px;
+            gap: 30px;
+            padding: 0 16px 60px 16px;
         }
+        
         .location-map {
-            flex: 1;
-            min-width: 320px;
+            width: 100%;
             max-width: 600px;
-            border: 2px solid #1976d2;
-            border-radius: 14px;
+            border: 2px solid var(--primary-color);
+            border-radius: 12px;
             overflow: hidden;
-            background: #fff;
+            background: var(--white);
         }
+        
         .location-text {
-            flex: 1;
-            max-width: 350px;
-            font-size: 1.2em;
-            color: #333;
-            border: 2px solid #1976d2;
-            border-radius: 14px;
-            padding: 32px 24px;
-            background: #fff;
-        }
-        /* Contact Section */
-        .contact-title {
+            width: 100%;
+            max-width: 600px;
+            font-size: 1.1em;
+            color: var(--text-color);
+            border: 2px solid var(--primary-color);
+            border-radius: 12px;
+            padding: 20px;
+            background: var(--white);
             text-align: center;
-            font-size: 2em;
-            color: #1976d2;
-            font-weight: 700;
-            margin: 120px 0 16px 0;
-            letter-spacing: 1px;
         }
+        
+        /* Contact Section */
         .contact-desc {
             text-align: center;
-            font-size: 1.15em;
-            color: #333;
-            margin-bottom: 48px;
+            font-size: 1.05em;
+            color: var(--text-color);
+            margin-bottom: 40px;
+            padding: 0 16px;
         }
+        
         .contact-section {
             display: flex;
+            flex-direction: column;
             justify-content: center;
-            align-items: flex-start;
-            gap: 48px;
-            padding-bottom: 100px;
+            align-items: center;
+            gap: 30px;
+            padding: 0 16px 60px 16px;
         }
+        
         .contact-img {
-            flex: 1;
-            max-width: 350px;
-            border: 2px solid #1976d2;
-            border-radius: 14px;
+            width: 100%;
+            max-width: 400px;
+            border: 2px solid var(--primary-color);
+            border-radius: 12px;
             overflow: hidden;
-            background: #fff;
+            background: var(--white);
         }
+        
         .contact-img img {
             width: 100%;
             display: block;
         }
+        
         .contact-form {
-            flex: 1;
+            width: 100%;
             max-width: 400px;
-            border: 2px solid #1976d2;
-            border-radius: 14px;
-            padding: 32px 24px;
-            background: #fff;
+            border: 2px solid var(--primary-color);
+            border-radius: 12px;
+            padding: 20px;
+            background: var(--white);
             display: flex;
             flex-direction: column;
-            gap: 20px;
+            gap: 16px;
         }
+        
         .contact-form input,
         .contact-form textarea {
             padding: 12px;
             border-radius: 6px;
             border: 1px solid #ccc;
             font-size: 1em;
+            font-family: 'Cairo', Arial, sans-serif;
+            width: 100%;
         }
+        
         .contact-form textarea {
             resize: vertical;
+            min-height: 120px;
         }
+        
         .contact-form button {
-            background: #1976d2;
-            color: #fff;
+            background: var(--primary-color);
+            color: var(--white);
             border: none;
             border-radius: 6px;
             padding: 12px;
-            font-size: 1.1em;
+            font-size: 1em;
             font-weight: 500;
             cursor: pointer;
             transition: background 0.3s;
+            font-family: 'Cairo', Arial, sans-serif;
         }
+        
         .contact-form button:hover {
-            background: #125ea2;
+            background: var(--secondary-color);
         }
+        
         /* Footer */
         footer {
             background: #f5f5f5;
-            border-top: 2px solid #1976d2;
-            padding:  32px 0px 16px 0;
+            border-top: 2px solid var(--primary-color);
+            padding: 24px 0 12px 0;
             margin-top: 40px;
         }
+        
         .footer-content {
             display: flex;
             justify-content: space-around;
             flex-wrap: wrap;
             max-width: 1200px;
             margin: 0 auto;
-            padding: 0 20px;
+            padding: 0 16px;
         }
+        
         .footer-bottom {
             text-align: center;
             color: #888;
-            font-size: 1em;
+            font-size: 0.9em;
             margin-top: 12px;
-            padding-top: 0px;
+            padding-top: 0;
             border-top: none;
         }
+        
         .footer-socials {
-            margin-top: 18px;
+            margin-top: 16px;
             text-align: center;
         }
+        
         .footer-socials a {
-            color: #1976d2;
-            margin: 0 10px;
-            font-size: 1.4em;
+            color: var(--primary-color);
+            margin: 0 8px;
+            font-size: 1.3em;
             text-decoration: none;
         }
+        
         .footer-socials a:hover {
-            color: #1565c0;
+            color: var(--secondary-color);
         }
-        @media (max-width: 1100px) {
-            .doctors-section {
-                gap: 24px;
-            }
-            .doctor-card {
-                width: 220px;
-                padding: 24px 12px 20px 12px;
-            }
-            .analysis-section table {
-                min-width: 400px;
-            }
-        }
-        @media (max-width: 900px) {
-            header {
-                margin: 16px 8px 0 8px;
-            }
-            .home-content, .about-part, .about-part.reverse, .doctors-section, .location-section, .contact-section {
-                flex-direction: column !important;
-                gap: 32px;
-                text-align: center;
-                align-items: center;
-            }
-            .about-section {
-                padding: 0 8px 60px 8px;
-            }
-            .about-text {
-                max-width: 100%;
-            }
-            .facility-title, .doctors-title, .analysis-title, .location-title, .contact-title {
-                margin: 80px 0 36px 0;
-            }
-            .doctor-card {
-                width: 90vw;
-                max-width: 340px;
-            }
-            .location-map, .location-text, .contact-img, .contact-form {
-                max-width: 100%;
-            }
-            .analysis-section table {
-                min-width: 0;
-                width: 100%;
-                font-size: 1em;
-            }
-        }
+        
+        /* Form Messages */
         #formMessage {
             margin-top: 16px;
             border-radius: 5px;
             transition: all 0.3s ease;
-            margin-top: 15px;
             padding: 12px;
             display: none;
+            text-align: center;
         }
-
+        
         .success-message {
             background-color: #d4edda;
             color: #155724;
             border: 1px solid #c3e6cb;
         }
-
+        
         .error-message {
             background-color: #f8d7da;
             color: #721c24;
             border: 1px solid #f5c6cb;
+        }
+        
+        /* Tablet Styles */
+        @media (min-width: 768px) {
+            header {
+                padding: 16px 24px;
+                margin: 20px 20px 0 20px;
+            }
+            
+            .logo {
+                font-size: 1.4em;
+            }
+            
+            nav {
+                gap: 20px;
+            }
+            
+            nav a {
+                font-size: 1em;
+            }
+            
+            .home-content {
+                padding: 50px 20px 0 20px;
+                gap: 40px;
+            }
+            
+            .home-text {
+                font-size: 2.2em;
+            }
+            
+            .about-section,
+            .doctors-section,
+            .location-section,
+            .contact-section {
+                padding-left: 20px;
+                padding-right: 20px;
+            }
+            
+            .doctors-section {
+                flex-direction: row;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .doctor-card {
+                width: calc(50% - 20px);
+                max-width: 300px;
+            }
+            
+            .location-section,
+            .contact-section {
+                flex-direction: row;
+                align-items: flex-start;
+            }
+            
+            .location-text,
+            .contact-form {
+                max-width: 50%;
+            }
+        }
+        
+        /* Desktop Styles */
+        @media (min-width: 1024px) {
+            header {
+                padding: 16px 32px;
+                margin: 24px 32px 0 32px;
+            }
+            
+            .home-content {
+                flex-direction: row;
+                text-align: right;
+                padding: 60px 32px 0 32px;
+                gap: 48px;
+            }
+            
+            .home-text-group {
+                text-align: right;
+                max-width: 500px;
+            }
+            
+            .home-image {
+                max-width: 500px;
+            }
+            
+            .about-section {
+                padding: 0 32px 100px 32px;
+                gap: 80px;
+            }
+            
+            .about-part {
+                flex-direction: row;
+                gap: 60px;
+            }
+            
+            .about-part.reverse {
+                flex-direction: row-reverse;
+            }
+            
+            .about-text {
+                text-align: right;
+                max-width: 500px;
+            }
+            
+            .doctors-section {
+                gap: 48px;
+                padding: 0 32px 100px 32px;
+            }
+            
+            .doctor-card {
+                width: 270px;
+            }
+            
+            .doctor-card:nth-child(1) {
+                height: 420px;
+            }
+            
+            .doctor-card:nth-child(2) {
+                height: 390px;
+            }
+            
+            .doctor-card:nth-child(3) {
+                height: 440px;
+            }
+            
+            .analysis-section,
+            .location-section,
+            .contact-section {
+                padding: 0 32px 100px 32px;
+            }
+            
+            .facility-title,
+            .doctors-title,
+            .analysis-title,
+            .location-title,
+            .contact-title {
+                margin: 120px 0 56px 0;
+                font-size: 2em;
+            }
         }
     </style>
     <!-- خط كايرو للعربية -->
@@ -486,6 +634,7 @@
             <a href="#contact">اتصل بنا</a>
         </nav>
     </header>
+    
     <div id="home" class="home-content">
         <img src="home.png" alt="مستوصف اجيم" class="home-image">
         <div class="home-text-group">
@@ -495,6 +644,7 @@
             <a href="about.html" class="read-more-btn">اقرأ المزيد</a>
         </div>
     </div>
+    
     <div id="about" class="facility-title">
         حول منشأتنا
     </div>
@@ -521,6 +671,7 @@
             </div>
         </div>
     </div>
+    
     <div id="doctors" class="doctors-title">
         أطباؤنا
     </div>
@@ -565,6 +716,7 @@
             </div>
         </div>
     </div>
+    
     <div id="analysis" class="analysis-title">
         تحاليل  الأسبوع
     </div>
@@ -616,6 +768,7 @@
             </tbody>
         </table>
     </div>
+    
     <div id="location" class="location-title">
         موقعنا
     </div>
@@ -636,6 +789,7 @@
             زورونا للحصول على رعاية وخدمات صحية مميزة.
         </div>
     </div>
+    
     <div id="contact" class="contact-title">
         اتصل بنا
     </div>
@@ -656,111 +810,113 @@
             <button type="submit">Envoyer / إرسال</button>
         </form>
     </div>
+    
     <footer>
-    <div class="footer-content">
-        <!-- You can add footer content here if needed -->
-    </div>
-    <div class="footer-bottom">
-        تم التصميم والبرمجة بواسطة
-        <span style="color:#1976d2; text-decoration:underline; font-weight:600;">يسري بن حريز</span>
-        - جميع الحقوق محفوظة &copy;
-        <div class="footer-socials">
-            <a href="https://www.facebook.com/yousri.benhariz.98" target="_blank" title="فيسبوك"><i class="fab fa-facebook"></i></a>
-            <a href="https://www.tiktok.com/@yousribenhariz1?_t=ZM-8xEKBMS5VXc&_r=1" target="_blank" title="تيك توك"><i class="fab fa-tiktok"></i></a>
-            <a href="https://www.instagram.com/yousribenhariz59/" target="_blank" title="إنستغرام"><i class="fab fa-instagram"></i></a>
-            <a href="https://www.snapchat.com/add/youssri4542?share_id=wx535ZK-mGw&locale=en-US" target="_blank" title="سناب شات"><i class="fab fa-snapchat"></i></a>
+        <div class="footer-content">
+            <!-- You can add footer content here if needed -->
         </div>
-    </div>
-</footer>
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-    // Bilingual messages
-    const messages = {
-        nameError: {
-            fr: "Les champs de nom ne doivent contenir que des lettres, espaces, traits d'union ou apostrophes.",
-            ar: "يجب أن تحتوي حقول الاسم على أحرف فقط، مسافات، شرطات أو فواصل علوية."
-        },
-        phoneError: {
-            fr: "Le numéro de téléphone ne doit contenir que des chiffres et un + optionnel au début.",
-            ar: "يجب أن يحتوي رقم الهاتف على أرقام فقط و + اختياري في البداية."
-        },
-        requiredFields: {
-            fr: "Veuillez remplir tous les champs obligatoires.",
-            ar: "يرجى ملء جميع الحقول المطلوبة."
-        },
-        submitError: {
-            fr: "Échec de l'envoi. Veuillez réessayer.",
-            ar: "فشل الإرسال. يرجى المحاولة مرة أخرى."
-        },
-        submitSuccess: {
-            fr: "Votre message a été envoyé avec succès!",
-            ar: "تم إرسال رسالتك بنجاح!"
-        }
-    };
+        <div class="footer-bottom">
+            تم التصميم والبرمجة بواسطة
+            <span style="color:#1976d2; text-decoration:underline; font-weight:600;">يسري بن حريز</span>
+            - جميع الحقوق محفوظة &copy;
+            <div class="footer-socials">
+                <a href="https://www.facebook.com/yousri.benhariz.98" target="_blank" title="فيسبوك"><i class="fab fa-facebook"></i></a>
+                <a href="https://www.tiktok.com/@yousribenhariz1?_t=ZM-8xEKBMS5VXc&_r=1" target="_blank" title="تيك توك"><i class="fab fa-tiktok"></i></a>
+                <a href="https://www.instagram.com/yousribenhariz59/" target="_blank" title="إنستغرام"><i class="fab fa-instagram"></i></a>
+                <a href="https://www.snapchat.com/add/youssri4542?share_id=wx535ZK-mGw&locale=en-US" target="_blank" title="سناب شات"><i class="fab fa-snapchat"></i></a>
+            </div>
+        </div>
+    </footer>
 
-    function isValidName(str) {
-        // Allow Arabic, English letters, spaces, hyphens, and apostrophes
-        const regex = /^[\u0600-\u06FFa-zA-Z\s'-]+$/;
-        return regex.test(str);
-    }
-    
-    function isValidPhone(str) {
-        // Allow numbers and optional + at start
-        const regex = /^\+?\d+$/;
-        return regex.test(str);
-    }
-    
-    function showMessage(message, type) {
-        const messageDiv = document.getElementById("formMessage");
-        messageDiv.textContent = message;
-        messageDiv.className = type + "-message";
-        messageDiv.style.display = "block";
-        
-        // Hide message after 5 seconds
-        setTimeout(() => {
-            messageDiv.style.display = "none";
-        }, 5000);
-    }
-    
-    document.getElementById("consultationForm").addEventListener("submit", function(e) {
-        e.preventDefault();
-        
-        const firstName = document.getElementById("first_name").value.trim();
-        const lastName = document.getElementById("last_name").value.trim();
-        const phone = document.getElementById("phone").value.trim();
-        const message = document.querySelector("textarea[name='message']").value.trim();
-        const messageDiv = document.getElementById("formMessage");
-        
-        // Clear previous messages
-        messageDiv.style.display = "none";
-        
-        // Validate inputs
-        if (!firstName || !lastName || !phone || !message) {
-            showMessage(messages.requiredFields.fr + " / " + messages.requiredFields.ar, "error");
-            return;
-        }
-        
-        if (!isValidName(firstName)) {
-            showMessage(messages.nameError.fr + " / " + messages.nameError.ar, "error");
-            return;
-        }
-        
-        if (!isValidName(lastName)) {
-            showMessage(messages.nameError.fr + " / " + messages.nameError.ar, "error");
-            return;
-        }
-        
-        if (!isValidPhone(phone)) {
-            showMessage(messages.phoneError.fr + " / " + messages.phoneError.ar, "error");
-            return;
-        }
-        
-        // For static site, just show success message
-        showMessage(messages.submitSuccess.fr + " / " + messages.submitSuccess.ar, "success");
-        document.getElementById("consultationForm").reset();
-    });
-});
+    <script>
+        // Your existing JavaScript remains the same
+        document.addEventListener("DOMContentLoaded", function() {
+            // Bilingual messages
+            const messages = {
+                nameError: {
+                    fr: "Les champs de nom ne doivent contenir que des lettres, espaces, traits d'union ou apostrophes.",
+                    ar: "يجب أن تحتوي حقول الاسم على أحرف فقط، مسافات، شرطات أو فواصل علوية."
+                },
+                phoneError: {
+                    fr: "Le numéro de téléphone ne doit contenir que des chiffres et un + optionnel au début.",
+                    ar: "يجب أن يحتوي رقم الهاتف على أرقام فقط و + اختياري في البداية."
+                },
+                requiredFields: {
+                    fr: "Veuillez remplir tous les champs obligatoires.",
+                    ar: "يرجى ملء جميع الحقول المطلوبة."
+                },
+                submitError: {
+                    fr: "Échec de l'envoi. Veuillez réessayer.",
+                    ar: "فشل الإرسال. يرجى المحاولة مرة أخرى."
+                },
+                submitSuccess: {
+                    fr: "Votre message a été envoyé avec succès!",
+                    ar: "تم إرسال رسالتك بنجاح!"
+                }
+            };
+
+            function isValidName(str) {
+                // Allow Arabic, English letters, spaces, hyphens, and apostrophes
+                const regex = /^[\u0600-\u06FFa-zA-Z\s'-]+$/;
+                return regex.test(str);
+            }
+            
+            function isValidPhone(str) {
+                // Allow numbers and optional + at start
+                const regex = /^\+?\d+$/;
+                return regex.test(str);
+            }
+            
+            function showMessage(message, type) {
+                const messageDiv = document.getElementById("formMessage");
+                messageDiv.textContent = message;
+                messageDiv.className = type + "-message";
+                messageDiv.style.display = 'block';
+                
+                // Hide message after 5 seconds
+                setTimeout(() => {
+                    messageDiv.style.display = 'none';
+                }, 5000);
+            }
+            
+            document.getElementById("consultationForm").addEventListener("submit", function(e) {
+                e.preventDefault();
+                
+                const firstName = document.getElementById("first_name").value.trim();
+                const lastName = document.getElementById("last_name").value.trim();
+                const phone = document.getElementById("phone").value.trim();
+                const message = document.querySelector("textarea[name='message']").value.trim();
+                const messageDiv = document.getElementById("formMessage");
+                
+                // Clear previous messages
+                messageDiv.style.display = 'none';
+                
+                // Validate inputs
+                if (!firstName || !lastName || !phone || !message) {
+                    showMessage(messages.requiredFields.fr + " / " + messages.requiredFields.ar, "error");
+                    return;
+                }
+                
+                if (!isValidName(firstName)) {
+                    showMessage(messages.nameError.fr + " / " + messages.nameError.ar, "error");
+                    return;
+                }
+                
+                if (!isValidName(lastName)) {
+                    showMessage(messages.nameError.fr + " / " + messages.nameError.ar, "error");
+                    return;
+                }
+                
+                if (!isValidPhone(phone)) {
+                    showMessage(messages.phoneError.fr + " / " + messages.phoneError.ar, "error");
+                    return;
+                }
+                
+                // For static site, just show success message
+                showMessage(messages.submitSuccess.fr + " / " + messages.submitSuccess.ar, "success");
+                document.getElementById("consultationForm").reset();
+            });
+        });
     </script>
 </body>
-
 </html>
